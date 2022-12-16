@@ -1,5 +1,33 @@
 # Azure-Sentinel-Heatmap
 
+<h2>Description</h2>
+A basic project where I used Azure to create a honeypot VM, created a custom log and SIEM to gather data, and plot the data on a heatmap in Azure Sentinel.
+<br />
+
+
+<h2>Languages and Utilities Used</h2>
+
+- <b>Terminal</b> 
+- <b>ping</b> 
+- <b>ipgeolocation[.]io</b> 
+
+<h2>Environments Used </h2>
+
+- <b>Windows 11</b>
+- <b}Microsoft Azure</b>
+
+
+<!--
+ ```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
+--!>
+
+- <b>Process</b> 
 1. Create a VM in Azure
 - Purpose: setup a VM that will act as a honeypot
 - Create Virtual Machine --> Create new resource group – "honeypotlab" --> Name VM – "honeypot-vm" --> Fixed size --> Create username and password that is easy to remember to log in later --> Click next, next again to go to Networking --> NIC network security group  Advanced  Create New --> Delete default rule --> Create new rule with * destination port, action allow, priority 100, name anything “DANGER_ANYTHING_IN" (This allows all traffic into VM) --> Review + Create  Create
