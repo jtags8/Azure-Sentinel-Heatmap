@@ -16,7 +16,7 @@ A basic project where I used Azure to create a honeypot VM, created a custom log
 - <b>Windows 11</b>
 - <b>Microsoft Azure</b>
 
-- <h2>Process</h2> 
+<h2>Process</h2> 
 1. Create a VM in Azure
 - Purpose: setup a VM that will act as a honeypot
 - Create Virtual Machine --> Create new resource group – "honeypotlab" --> Name VM – "honeypot-vm" --> Fixed size --> Create username and password that is easy to remember to log in later --> Click next, next again to go to Networking --> NIC network security group  Advanced  Create New --> Delete default rule --> Create new rule with * destination port, action allow, priority 100, name anything “DANGER_ANYTHING_IN" (This allows all traffic into VM) --> Review + Create  Create
