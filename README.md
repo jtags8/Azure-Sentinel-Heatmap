@@ -60,6 +60,8 @@ ii.	| where destinationhost_CF != "samplehost"
 iii.	| where sourcehost_CF != ""
 - <b>Visualization  Map --> Size  Large or Full --> Fix map settings (latitude, longitude, metric label by label_CF, metric value change to event_count, size by event_count) --> Save workbook --> Can set to auto-refresh --> Wait for attacks to come!</b>
 
+![Screenshot 2022-12-15 194809](https://user-images.githubusercontent.com/114617963/207998110-c2f909d5-403d-4cdd-a831-8ebf5ae94642.png)
+
 
 <!--
  ```diff
