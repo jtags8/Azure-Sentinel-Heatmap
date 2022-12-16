@@ -10,63 +10,34 @@
 4.	Setup Sentinel
 - Search Microsoft Sentinel --> Click LAW where all logs are --> Add
 5.	Go back to VMs
-a.	Note Public IP - 20.119.183.185; log into it with a remote desktop
+- Note Public IP - 20.119.183.185; log into it with a remote desktop
 6.	Go to host computer and use Remote Desktop Connection
-a.	Connect to public IP
-b.	Use different account
-c.	Accept certificate warning
+- Connect to public IP --> Use different account --> Accept certificate warning
 7.	On VM
-a.	Set up edge, click no for sharing
-b.	Event Viewer  Windows Logs  Security
-c.	Look for 4625 Audit Failure
-d.	Take note of IP address – JEFF-PC is 73.195.193.100
-e.	Use ipgeolocation.io
-i.	"ip": 73.195.193.100
-ii.	"country_name": United States
-iii.	"state_prov": New Jersey
-iv.	"city": Southampton Township
-v.	"latitude": 39.92802
-vi.	"longitude": -74.77175
-vii.	"time_zone": America/New_York
-viii.	"isp": Comcast
-ix.	"currency": US Dollar
+- Set up edge, click no for sharing --> Event Viewer  Windows Logs  Security --> Look for 4625 Audit Failure --> Take note of IP address --> Use ipgeolocation.io
+i.	"ip": 
+ii.	"country_name": 
+iii.	"state_prov":  
+iv.	"city": 
+v.	"latitude": 
+vi.	"longitude": 
+vii.	"time_zone": 
+viii.	"isp": 
+ix.	"currency": 
 x.	"country_flag": USA
-f.	Use this info to create custom log and send to the LAW
-g.	Use Sentinel to plot attackers on map
+- Use this info to create custom log and send to the LAW
+- Use Sentinel to plot attackers on map
 8.	Back on host
-a.	Test ping in command line the public IP (ping 20.119.183.185)
-b.	Should have 4 packets lost
-c.	Go back to VM, search wf.msc  Firewall Properties  disable firewall on Domain, private, public
-d.	Host machine – ping ip, should work
+- Test ping in command line the public IP (ping 20.119.183.185) --> Should have 4 packets lost --> Go back to VM, search wf.msc  Firewall Properties  disable firewall on Domain, private, public --> Host machine – ping ip, should work
 9.	Download .ps1 file
-a.	GitHub - joshmadakor1/Sentinel-Lab
-b.	Go to the Custom Security Log Exporter .ps1 file
-c.	Copy whole code
-d.	Go to Windows Powershell ISE  New  Paste code  Save to Desktop
-e.	Need to get own API key from ipgeolocation.io -0130bdb421fd474d8cb3d085d9edb619
-f.	Press Play button to run script
-g.	Creates failed logon data in C:/ProgramData/failed_rdp
+- GitHub - joshmadakor1/Sentinel-Lab --> Go to the Custom Security Log Exporter .ps1 file --> Copy whole code --> Go to Windows Powershell ISE  New  Paste code  Save to Desktop --> Need to get own API key from ipgeolocation.io -0130bdb421fd474d8cb3d085d9edb619 --> Press Play button to run script --> Creates failed logon data in C:/ProgramData/failed_rdp
 10.	Back to Azure
-a.	LAW  Click law-honeypot1  Custom Logs  Add custom log
-b.	Need to copy and paste log data from VM to host computer, and make new file
-c.	C:\ProgramData\failed_rdp.log
-d.	Then name and create log
-e.	In Logs, can enter FAILED_RDP_WITH_GEO_CL in first line, then click Run
-f.	Bunch of logs show up (during this process, an attacker from Mexico City was actually brute forcing with username “administrator” IP 189.254.74.74)
+- LAW  Click law-honeypot1  Custom Logs  Add custom log --> Need to copy and paste log data from VM to host computer, and make new file --> C:\ProgramData\failed_rdp.log --> Then name and create log --> In Logs, can enter FAILED_RDP_WITH_GEO_CL in first line, then click Run --> Bunch of logs show up (during this process, an attacker from Mexico City was actually brute forcing with username “administrator” IP 189.254.74.74)
 11.	Extract RawData to make fields
-a.	Right click one of the logs, and click Extract
-b.	Highlight numbers next to latitude, enter name “latitude”, then drop down menu select Numeric
-c.	Repeat for all other data labels (numeric for latitude longitude, time/date for the timestamp, text for all others)
+- Right click one of the logs, and click Extract --> Highlight numbers next to latitude, enter name “latitude”, then drop down menu select Numeric --> Repeat for all other data labels (numeric for latitude longitude, time/date for the timestamp, text for all others)
 12.	Make map in Sentinel
-a.	Search Sentinel
-b.	Click Workbook  Add New  Edit  remove the two default widgets
-c.	Add  Add query  copy and paste this query 
+- Search Sentinel --> Click Workbook  Add New  Edit  remove the two default widgets --> Add  Add query  copy and paste this query 
 i.	FAILED_RDP_WITH_GEO_CL | summarize event_count=count() by sourcehost_CF, latitude_CF, longitude_CF, country_CF, label_CF, destinationhost_CF
 ii.	| where destinationhost_CF != "samplehost"
 iii.	| where sourcehost_CF != ""
-d.	Visualization  Map
-e.	Size  Large or Full
-f.	Fix map settings (latitude, longitude, metric label by label_CF, metric value change to event_count, size by event_count)
-g.	Save workbook
-h.	Can set to auto-refresh
-i.	Wait for attacks to come!
+- Visualization  Map --> Size  Large or Full --> Fix map settings (latitude, longitude, metric label by label_CF, metric value change to event_count, size by event_count) --> Save workbook --> Can set to auto-refresh --> Wait for attacks to come!
