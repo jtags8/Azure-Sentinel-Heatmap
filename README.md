@@ -18,9 +18,9 @@ A basic project where I used Azure to create a honeypot VM, created a custom log
 
 <h2>Process</h2> 
 
-1. Create a VM in Azure
-- <b>Purpose: setup a VM that will act as a honeypot</b>
-- <b>Create Virtual Machine --> Create new resource group – "honeypotlab" --> Name VM – "honeypot-vm" --> Fixed size --> Create username and password that is easy to remember to log in later --> Click next, next again to go to Networking --> NIC network security group  Advanced  Create New --> Delete default rule --> Create new rule with * destination port, action allow, priority 100, name anything “DANGER_ANYTHING_IN" (This allows all traffic into VM) --> Review + Create  Create </b>
+<b>1. Create a VM in Azure</b>
+- <u>Purpose</u>: to setup a VM that will act as a honeypot
+- First, go to Create Virtual Machine. Create new resource group, which I named "honeypotlab". Name the VM, which I named "honeypot-vm". Choose a size, but usually the default one is sufficient. Create username and password that is easy to remember to log in later. Click next, then next again to go to Networking. In networking, under NIC network security group, check off Advanced, then Create New. There you should delete default rule that is already there. Create new rule with * destination port, action allow, priority 100. Name the rule anything, but I named it “DANGER_ANYTHING_IN". This allows all traffic into VM. Once finished, click Review + Create, and then Create.
 2. Log Analytics Workspace
 - <b>Purpose: to ingest logs from VM</b>
 - <b>Create new --> Resource group “honeypotlab” --> Name it – "law-honeypot1" --> Region – Default US East 2</b>
