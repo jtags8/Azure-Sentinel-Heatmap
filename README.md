@@ -54,11 +54,17 @@ x.	"country_flag": USA</b>
 11.	Extract RawData to make fields
 - <b>Right click one of the logs, and click Extract --> Highlight numbers next to latitude, enter name “latitude”, then drop down menu select Numeric --> Repeat for all other data labels (numeric for latitude longitude, time/date for the timestamp, text for all others)</b>
 12.	Make map in Sentinel
-- <b>Search Sentinel --> Click Workbook  Add New  Edit  remove the two default widgets --> Add  Add query  copy and paste this query </b>
+- Search Sentinel --> Click Workbook  Add New  Edit  remove the two default widgets --> Add  Add query  copy and paste this query
 i.	FAILED_RDP_WITH_GEO_CL | summarize event_count=count() by sourcehost_CF, latitude_CF, longitude_CF, country_CF, label_CF, destinationhost_CF
 ii.	| where destinationhost_CF != "samplehost"
 iii.	| where sourcehost_CF != ""
-- <b>Visualization  Map --> Size  Large or Full --> Fix map settings (latitude, longitude, metric label by label_CF, metric value change to event_count, size by event_count) --> Save workbook --> Can set to auto-refresh --> Wait for attacks to come!</b>
+
+![Screenshot 2022-12-15 191850](https://user-images.githubusercontent.com/114617963/207998220-41556d19-5745-46cb-a322-0718db013567.png)
+
+- Visualization  Map --> Size  Large or Full --> Fix map settings (latitude, longitude, metric label by label_CF, metric value change to event_count, size by event_count) --> Save workbook --> Can set to auto-refresh --> Wait for attacks to come!
+
+
+![Screenshot 2022-12-15 191900](https://user-images.githubusercontent.com/114617963/207998156-c00be791-304e-4164-87bb-7661f77dcf15.png)
 
 ![Screenshot 2022-12-15 194809](https://user-images.githubusercontent.com/114617963/207998110-c2f909d5-403d-4cdd-a831-8ebf5ae94642.png)
 
