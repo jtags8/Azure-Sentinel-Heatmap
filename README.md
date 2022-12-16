@@ -14,7 +14,7 @@ A basic project where I used Azure to create a honeypot VM, created a custom log
 <h2>Environments Used </h2>
 
 - <b>Windows 11</b>
-- <b}Microsoft Azure</b>
+- <b>Microsoft Azure</b>
 
 
 <!--
