@@ -43,14 +43,23 @@ vii.	"time_zone":
 viii.	"isp": 
 ix.	"currency": 
 x.	"country_flag": USA</b>
-- <b>Use this info to create custom log and send to the LAW</b>
-- <b>Use Sentinel to plot attackers on map</b>
+- Use this info to create custom log and send to the LAW
+
+![Screenshot 2022-12-15 150542](https://user-images.githubusercontent.com/114617963/207998455-8c8c6f08-8cba-4c0c-b3f6-872a8393d82e.png)
+
+- Use Sentinel to plot attackers on map
 8.	Back on host
 - <b>Test ping in command line the public IP (ping 20.119.183.185) --> Should have 4 packets lost --> Go back to VM, search wf.msc  Firewall Properties  disable firewall on Domain, private, public --> Host machine – ping ip, should work</b>
 9.	Download .ps1 file
 - <b>GitHub - joshmadakor1/Sentinel-Lab --> Go to the Custom Security Log Exporter .ps1 file --> Copy whole code --> Go to Windows Powershell ISE  New  Paste code  Save to Desktop --> Need to get own API key from ipgeolocation.io -0130bdb421fd474d8cb3d085d9edb619 --> Press Play button to run script --> Creates failed logon data in C:/ProgramData/failed_rdp</b>
 10.	Back to Azure
 - <b>LAW  Click law-honeypot1  Custom Logs  Add custom log --> Need to copy and paste log data from VM to host computer, and make new file --> C:\ProgramData\failed_rdp.log --> Then name and create log --> In Logs, can enter FAILED_RDP_WITH_GEO_CL in first line, then click Run --> Bunch of logs show up (during this process, an attacker from Mexico City was actually brute forcing with username “administrator” IP 189.254.74.74)</b>
+
+![Screenshot 2022-12-15 184800 BRUTE FORCE](https://user-images.githubusercontent.com/114617963/207998335-3b68b5f5-ade6-4823-8484-66d2819bc267.png)
+
+![Screenshot 2022-12-15 184844 BRUTE FORCE in LAW](https://user-images.githubusercontent.com/114617963/207998326-7c80b34c-654f-442b-91f1-17637e4f6550.png)
+
+
 11.	Extract RawData to make fields
 - <b>Right click one of the logs, and click Extract --> Highlight numbers next to latitude, enter name “latitude”, then drop down menu select Numeric --> Repeat for all other data labels (numeric for latitude longitude, time/date for the timestamp, text for all others)</b>
 12.	Make map in Sentinel
